@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    {% block main %}
+        <h1>Hello{% if app.user %} {{ app.user.username }}{% endif %}!</h1>
+
+        {% if app.user %}
+            <a href="{{ path('news') }}">Създай новина</a>
+            <br>
+            <a href="{{ path('profile') }}">Профил</a>
+            <br>
+            <a href="{{ path('all_news') }}">Всички новини</a>
+            <br>
+            <a href="{{ path('app_logout') }}">Излез</a>
+            {% else %}
+            <a href="{{ path('app_register') }}">Регистрация</a>
+            <br>
+            <a href="{{ path('app_login') }}">Влез</a>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+

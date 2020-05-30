@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-5">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Заглавие</th>
+                    <th>Съдържание</th>
+                    <th>Автор</th>
+                    <th>Опции</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for news in allNews %}
+                    <tr>
+                        <td>{{ news.title }}</td>
+                        <td>{{ news.summary }} ...</td>
+                        <td>{{ news.author.fullName }}</td>
+                        <td>
+                            <a href="{{ path('news_view', {'id': news.id})}}">Виж</a>
+                            {% if app.user == news.author or is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('edit_news', {'id': news.id})}}">Промени</a>
+                            <a href="{{ path('delete_news', {'id': news.id})}}">Изтрии</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+
+

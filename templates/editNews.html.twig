@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% form_theme newsForm "bootstrap_4_layout.html.twig" %}
+{% block body %}
+    {% block main %}
+        {{ form_start(newsForm) }}
+        {{ form_row(newsForm.title, {'label': 'Заглавие'}) }}
+        <hr>
+        {{ form_row(newsForm.content, {'label': 'Текст'}) }}
+        <hr>
+        {{ form_row(newsForm.categories, {'label': 'Категории'}) }}
+        <hr>
+        {{ form_row(newsForm.save, {'label': 'Запази'}) }}
+        {{ form_end(newsForm) }}
+    {% endblock %}
+{% endblock %}
+
+
+

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 align="center">
+        Hello {{ app.user.fullName }}
+        {% if is_granted('ROLE_ADMIN') %}
+            <span style="color:#8b1b37">ADMIN</span>
+        {% endif %}
+    </h1>
+    {% if allUsers %}
+        <div>
+            <h2>Всичи потребители:</h2>
+        </div>
+        <div>
+            <ul>
+                {% for user in allUsers %}
+                    <li>User Name: {{ user.username }}, Full Name: {{ user.fullName }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Всички създадени новини</h2>
+            </div>
+            <div class="col-md-12">
+                {% for news in app.user.createdNews %}
+                    <div class="border border-secondary bg-light" style="margin: 30px 0">
+                        <div class="col-md-12" align="center">
+                            <h1>{{ news.title }}</h1>
+                        </div>
+                        <div class="col-md-12" align="center">
+                            <p>{{ news.summary }}...</p>
+                        </div>
+                        <div class="col-md-12" style="margin: 10px 0">
+                            <a href="{{ path('news_view', {'id': news.id}) }}" role="button" class="btn btn-outline-dark btn-sm">
+                                Виж
+                            </a>
+                            <a href="{{ path('edit_news', {'id': news.id})}}" role="button" class="btn btn-outline-success btn-sm">
+                                Промени
+                            </a>
+                            <a href="{{ path('delete_news', {'id': news.id})}}" role="button" class="btn btn-outline-danger btn-sm">
+                                Изтрии
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}
+
+

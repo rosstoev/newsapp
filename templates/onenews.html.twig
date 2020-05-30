@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-12" align="center">
+          <h1>
+              {{ news.title }}
+          </h1>
+        </div>
+        <div class="col-md-12">
+            <p>
+                {{ news.content }}
+            </p>
+        </div>
+        <div class="col-md-12">
+           <small><strong>{{ news.author.fullName }}</strong></small>
+            <small>{{ news.dateAdded.format('H:i:s d/m/Y') }}</small>
+        </div>
+
+    </div>
+{% endblock %}
+
+
